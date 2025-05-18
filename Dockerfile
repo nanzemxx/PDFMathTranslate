@@ -2,27 +2,33 @@ FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
 
 WORKDIR /app
 
-
+# 显示暴露端口
 EXPOSE 7860
 
 ENV PYTHONUNBUFFERED=1
 
-# # Download all required fonts
-# ADD "https://github.com/satbyy/go-noto-universal/releases/download/v7.0/GoNotoKurrent-Regular.ttf" /app/
-# ADD "https://github.com/timelic/source-han-serif/releases/download/main/SourceHanSerifCN-Regular.ttf" /app/
-# ADD "https://github.com/timelic/source-han-serif/releases/download/main/SourceHanSerifTW-Regular.ttf" /app/
-# ADD "https://github.com/timelic/source-han-serif/releases/download/main/SourceHanSerifJP-Regular.ttf" /app/
-# ADD "https://github.com/timelic/source-han-serif/releases/download/main/SourceHanSerifKR-Regular.ttf" /app/
-
+# 安装系统依赖
 RUN apt-get update && \
-     apt-get install --no-install-recommends -y libgl1 libglib2.0-0 libxext6 libsm6 libxrender1 && \
-     rm -rf /var/lib/apt/lists/*
+    apt-get install -y --no-install-recommends \
+        gcc \
+        pkg-config \
+        libzstd-dev \
+        libfreetype6-dev \
+        libgl1 \
+        libglib2.0-0 \
+        libxext6 \
+        libsm6 \
+        libxrender1 && \
+    rm -rf /var/lib/apt/lists/*
 
-COPY pyproject.toml .
-RUN uv pip install --system --no-cache -r pyproject.toml && babeldoc --version && babeldoc --warmup
-
+# 拷贝整个项目（推荐整体复制）
 COPY . .
 
-RUN uv pip install --system --no-cache . && uv pip install --system --no-cache -U "babeldoc<0.3.0" "pymupdf<1.25.3" "pdfminer-six==20250416" && babeldoc --version && babeldoc --warmup
+# 安装构建工具
+RUN uv pip install --system hatchling
 
+# 安装本地项目（包含 pyproject.toml）
+RUN uv pip install --system -e .
+
+# 设置启动命令（可改为你实际入口）
 CMD ["pdf2zh", "-i"]

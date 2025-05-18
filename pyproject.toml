@@ -1,8 +1,12 @@
 [project]
 name = "pdf2zh"
-version = "1.9.9"
+version = "1.0.0"
 description = "Latex PDF Translator"
-authors = [{ name = "Byaidu", email = "byaidux@gmail.com" }]
+authors = [
+    { name = "Byaidu", email = "byaidux@gmail.com" },
+    { name = "Xin", email = "xiongxinstu@icloud.com" }
+]
+
 license = "AGPL-3.0"
 readme = "README.md"
 requires-python = ">=3.10,<3.13"
@@ -10,31 +14,122 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
 ]
+# # Download all required fonts
+#ADD "https://github.com/satbyy/go-noto-universal/releases/download/v7.0/GoNotoKurrent-Regular.ttf" /app/
+#ADD "https://github.com/timelic/source-han-serif/releases/download/main/SourceHanSerifCN-Regular.ttf" /app/
+#ADD "https://github.com/timelic/source-han-serif/releases/download/main/SourceHanSerifTW-Regular.ttf" /app/
+#ADD "https://github.com/timelic/source-han-serif/releases/download/main/SourceHanSerifJP-Regular.ttf" /app/
+#ADD "https://github.com/timelic/source-han-serif/releases/download/main/SourceHanSerifKR-Regular.ttf" /app/
+
 dependencies = [
-    "requests",
-    # for arm64 linux whells
-    "pymupdf<1.25.3",
-    "tqdm",
-    "tenacity",
-    "numpy",
-    "ollama",
-    "xinference-client",
-    "deepl",
-    "openai>=1.0.0",
-    "azure-ai-translation-text<=1.0.1",
-    "gradio",
-    "huggingface_hub",
-    "onnx",
-    "onnxruntime",
-    "opencv-python-headless",
-    "tencentcloud-sdk-python-tmt",
-    "pdfminer-six==20250416",
-    "gradio_pdf>=0.0.21",
-    "pikepdf",
-    "peewee>=3.17.8",
-    "fontTools",
-    "babeldoc>=0.1.22, <0.3.0",
-    "rich",
+  "aiofiles",
+  "annotated-types",
+  "anyio",
+  "azure-ai-translation-text==1.0.1",
+  "bitarray",
+  "bitstring",
+  "certifi",
+  "cffi",
+  "charset-normalizer",
+  "click",
+  "click-default-group",
+  "coloredlogs",
+  "ConfigArgParse",
+  "cryptography",
+  "deepl",
+  "Deprecated",
+  "distro",
+  "fastapi",
+  "ffmpy",
+  "filelock",
+  "flatbuffers",
+  "fonttools",
+  "freetype-py",
+  "fsspec",
+  "gradio",
+  "gradio_client",
+  "gradio_pdf",
+  "groovy",
+  "h11",
+  "hf-xet",
+  "httpcore",
+  "httpx",
+  "huggingface-hub",
+  "humanfriendly",
+  "idna",
+  "imageio",
+  "isodate",
+  "Jinja2",
+  "lazy_loader",
+  "Levenshtein",
+  "lxml",
+  "markdown-it-py",
+  "MarkupSafe",
+  "mdurl",
+  "mpmath",
+  "msgpack",
+  "networkx",
+  "numpy",
+  "ollama",
+  "onnx",
+  "onnxruntime",
+  "openai",
+  "opencv-python-headless",
+  "orjson",
+  "packaging",
+  "pandas",
+  "pdfminer.six==20250416",
+  "peewee",
+  "pikepdf",
+  "pillow",
+  "protobuf",
+  "psutil",
+  "pyclipper",
+  "pycparser",
+  "pydantic",
+  "pydantic_core",
+  "pydub",
+  "Pygments",
+  "PyMuPDF",
+  "python-dateutil",
+  "python-Levenshtein",
+  "python-multipart",
+  "pytz",
+  "PyYAML",
+  "RapidFuzz",
+  "rapidocr-onnxruntime",
+  "regex",
+  "requests",
+  "rich",
+  "scikit-image",
+  "scipy",
+  "semantic-version",
+  "shapely",
+  "shellingham",
+  "six",
+  "sniffio",
+  "socksio",
+  "starlette",
+  "sympy",
+  "tenacity",
+  "tencentcloud-sdk-python-common",
+  "tencentcloud-sdk-python-tmt",
+  "tifffile",
+  "tiktoken",
+  "toposort",
+  "tqdm",
+  "typer",
+  "typing-inspection",
+  "typing_extensions",
+  "tzdata",
+  "untokenize",
+  "urllib3",
+  "uvicorn",
+  "websockets",
+  "wrapt",
+  "xinference-client",
+  "xsdata",
+  "zstd"
 ]
 
 [project.optional-dependencies]
@@ -77,7 +172,7 @@ max-line-length = 88
 
 
 [bumpver]
-current_version = "1.9.9"
+current_version = "1.0.0"
 version_pattern = "MAJOR.MINOR.PATCH[.PYTAGNUM]"
 
 [bumpver.file_patterns]
